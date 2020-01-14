@@ -125,7 +125,7 @@ body {
 }
 
 .active { background-color:
-  ; }
+  rgb(233, 233, 233); }
 .active .player-name { font-weight: 300; }
 
 .active .player-name::after {

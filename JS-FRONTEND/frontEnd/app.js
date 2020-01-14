@@ -10,27 +10,34 @@ GAME RULES:
 */
 
 
-let scores, roundScore, activePlayer, gamePlaying, lastDice, winningScore = 100
-   // document.querySelector('.player').style.display = 'none'
+let player1name, player2name, scores, roundScore, activePlayer,i, gamePlaying, lastDice, winningScore = 100
 let diceDOm = document.querySelector('.dice')
 let name = false
-let player1name, player2name
+let playerArray = []
+
+let playerRolls = [[],[]]
+let averageRollsPerTurn = [[],[]]
+let averageRoundScore = [[],[]]
+
 
 document.querySelector('.new-player-submit').addEventListener('click',function(){
 
 if (name === false){
   player1name = document.querySelector('.new-player').value
   document.getElementById('name-0').textContent = player1name
-
+  playerArray.push(player1 = new Player (player1name))
   name = true
-    document.querySelector('.new-player').placeholder='Enter Player 2 name'
-    document.querySelector('.new-player').value = '';
+  document.querySelector('.new-player').placeholder='Enter Player 2 name'
+  document.querySelector('.new-player').value = '';
+  console.log(player1);
   document.querySelector('.new-player-submit').addEventListener('click',function(){
   })
 } else if (name === true) {
 
   player2name = document.querySelector('.new-player').value
   document.getElementById('name-1').textContent = player2name
+    playerArray.push(player2 = new Player (player2name))
+    console.log(player2);
   document.querySelector('.new-player').placeholder='May you be a champion!'
   document.querySelector('.new-player').value = ''
   name = false
@@ -44,21 +51,30 @@ init()
 
 document.querySelector('.btn-roll').addEventListener('click', function(){
   if(gamePlaying){
+console.log(player1)
     let dice = Math.floor((Math.random()) * 6) + 1
 
         diceDOm.style.display = 'block'
         diceDOm.src = 'dice-' + dice + '.png'
+
           if (dice === 6 && lastDice === 6){
             scores[activePlayer] = 0
                 document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer]
             nextPlayer()
 
           } else if(dice !== 1) {
+            i++
+            playerRolls[activePlayer].push(dice)
+            console.log(playerRolls);
             roundScore += dice;
-
+            averageRoundScore[activePlayer].push(roundScore)
+            //console.log(averageRoundScore);
             document.querySelector("#current-" + activePlayer).textContent = roundScore
+              averageRollsPerTurn[activePlayer].push([i])
+              console.log(averageRollsPerTurn[0][1]);
           } else {
             nextPlayer()
+            i = 0
           }
               lastDice = dice
 
@@ -116,6 +132,7 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
     activePlayer = 0;
     gamePlaying = true
 
+
     diceDOm.style.display = 'none'
     document.getElementById('score-0').textContent = '0'
     document.getElementById('score-1').textContent = '0'
@@ -127,10 +144,6 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
     document.querySelector('.player-1-panel').classList.remove('winner')
     document.querySelector('.player-1-panel').classList.remove('active')
     document.querySelector('.player-0-panel').classList.add('active')
+    document.querySelector('.new-player-submit').style.display = 'block'
+    document.querySelector('.new-player').placeholder='Enter Player1 name'
   }
-
-
-
-
-// document.querySelector("#current-" + activePlayer).textContent = dice;
-// document.querySelector(".dice").style.display = 'none'
