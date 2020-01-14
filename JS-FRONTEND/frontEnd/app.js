@@ -11,7 +11,7 @@ GAME RULES:
 
 
 let scores, roundScore, activePlayer, gamePlaying, lastDice, winningScore = 100
-   document.querySelector('.player').style.display = 'none'
+   // document.querySelector('.player').style.display = 'none'
 let diceDOm = document.querySelector('.dice')
 let name = false
 let player1name, player2name
