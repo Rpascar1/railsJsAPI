@@ -15,6 +15,34 @@
   text-transform: uppercase;
 }
 
+.new-player {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 80px;
+  color: #555;
+  font-family: 'Lato';
+  text-align: center;
+  padding: 10px;
+  width: 200px;
+  text-transform: uppercase;
+
+}
+
+.new-player-submit {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 120px;
+  color: #555;
+  font-family: 'Lato';
+  text-align: center;
+  padding: 10px;
+  width: 200px;
+  text-transform: uppercase;
+
+}
+
 .final-score:focus { outline: none;}
 
 #dice-1 { top: 120px}
@@ -76,7 +104,7 @@ body {
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: 100;
-    margin-top: 20px;
+    margin-top: 40px;
     margin-bottom: 10px;
     position: relative;
 }
@@ -89,7 +117,8 @@ body {
     margin-bottom: 130px;
 }
 
-.active { background-color: #f7f7f7; }
+.active { background-color:
+  ; }
 .active .player-name { font-weight: 300; }
 
 .active .player-name::after {
@@ -107,7 +136,7 @@ body {
     color: #fff;
     position: center;
     top: 400px;
-    width: 45g%;
+    width: 50%;
     margin: 0 auto;
     padding: 12px;
     text-align: center;

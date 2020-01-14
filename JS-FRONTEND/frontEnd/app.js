@@ -10,13 +10,36 @@ GAME RULES:
 */
 
 
-let scores, roundScore, activePlayer, gamePlaying, lastDice;
+let scores, roundScore, activePlayer, gamePlaying, lastDice, winningScore = 100
 
 let diceDOm = document.querySelector('.dice')
+let name = false
+let player1name, player2name
+
+document.querySelector('.new-player-submit').addEventListener('click',function(){
+
+if (name === false){
+  player1name = document.querySelector('.new-player').value
+  document.getElementById('name-0').textContent = player1name
+
+  name = true
+    document.querySelector('.new-player').placeholder='Enter Player 2 name'
+    document.querySelector('.new-player').value = '';
+  document.querySelector('.new-player-submit').addEventListener('click',function(){
+  })
+} else if (name === true) {
+
+  player2name = document.querySelector('.new-player').value
+  document.getElementById('name-1').textContent = player2name
+  document.querySelector('.new-player').placeholder='May you be a champion!'
+  document.querySelector('.new-player').value = ''
+  name = false
+  document.querySelector('.new-player-submit').style.display = 'none'
+}
+
+})
 
 init()
-
-
 
 document.querySelector('.btn-roll').addEventListener('click', function(){
   if(gamePlaying){
@@ -37,7 +60,22 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
             nextPlayer()
           }
               lastDice = dice
+
+              let input = document.querySelector('.final-score').value
+
+
+              if(input){
+                winningScore = input
+
+              } else {
+                winningScore = 100
+
+              }
+
       }
+
+      document.querySelector('.final-score').placeholder=`First to reach ${winningScore} wins!`
+      document.querySelector('.final-score').value = ""
 })
     document.querySelector('.btn-hold').addEventListener('click', function(){
           if (gamePlaying){
@@ -46,14 +84,6 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
             document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer]
             diceDOm.style.display = 'none'
 
-            let input = document.querySelector('.final-score').value
-            let winningScore;
-
-            if(input){
-              winningScore = input
-            } else {
-              winningScore = 100
-            }
 
             if (scores[activePlayer] >= winningScore ) {
               document.querySelector('#name-' + activePlayer).textContent = 'Winner!';
@@ -96,8 +126,6 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
     document.querySelector('.player-1-panel').classList.remove('winner')
     document.querySelector('.player-1-panel').classList.remove('active')
     document.querySelector('.player-0-panel').classList.add('active')
-
-
   }
 
 
