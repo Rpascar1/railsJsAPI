@@ -11,7 +11,7 @@ GAME RULES:
 
 
 let scores, roundScore, activePlayer, gamePlaying, lastDice, winningScore = 100
-
+   document.querySelector('.player').style.display = 'none'
 let diceDOm = document.querySelector('.dice')
 let name = false
 let player1name, player2name
@@ -35,6 +35,7 @@ if (name === false){
   document.querySelector('.new-player').value = ''
   name = false
   document.querySelector('.new-player-submit').style.display = 'none'
+
 }
 
 })

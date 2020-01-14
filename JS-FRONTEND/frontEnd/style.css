@@ -1,6 +1,13 @@
 /**********************************************
 *** GENERAL
 **********************************************/
+.player{
+
+  opacity: 0.1;
+  position: fixed;
+    bottom: 0;
+  left: 0;
+}
 
 .final-score {
   position: absolute;
