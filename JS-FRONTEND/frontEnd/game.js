@@ -144,7 +144,7 @@ handleBtnHold = () => {
         }
 
                 handleNewGame = () => {
-
+                            this.name = false
                             this.scores = [0,0];
                             this.roundScore = 0;
                             this.activePlayer = 0;
