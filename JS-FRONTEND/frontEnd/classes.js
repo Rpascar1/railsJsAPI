@@ -5,3 +5,12 @@ class Player {
 
   }
 }
+
+const game = new Game()
+
+// class Game {
+//   constructor(playerArray){
+//   this.gamePlayers = playerArray;
+//
+//   }
+// }

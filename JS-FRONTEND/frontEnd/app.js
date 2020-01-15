@@ -13,15 +13,16 @@ GAME RULES:
 let player1name, player2name, scores, roundScore, activePlayer,i, gamePlaying, lastDice, winningScore = 100
 let diceDOm = document.querySelector('.dice')
 let name = false
-let playerArray = []
+let playerArray = []//done
 
 let playerRolls = [[],[]]
 let averageRollsPerTurn = [[],[]]
 let averageRoundScore = [[],[]]
-
+let gameWinner = []
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++=
+init()
 
 document.querySelector('.new-player-submit').addEventListener('click',function(){
-
 if (name === false){
   player1name = document.querySelector('.new-player').value
   document.getElementById('name-0').textContent = player1name
@@ -44,10 +45,13 @@ if (name === false){
   document.querySelector('.new-player-submit').style.display = 'none'
 
 }
-
+thisGame = new Game(playerArray)
+console.log(thisGame.players);
 })
 
-init()
+
+
+
 
 document.querySelector('.btn-roll').addEventListener('click', function(){
   if(gamePlaying){
@@ -85,7 +89,7 @@ console.log(player1)
                 winningScore = input
 
               } else {
-                winningScore = 100
+                winningScore
 
               }
 
