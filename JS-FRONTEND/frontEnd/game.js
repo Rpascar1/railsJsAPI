@@ -64,8 +64,8 @@ class Game {
 
               this.diceDOm.style.display = 'block'
               this.diceDOmNum.style.display = 'block'
-              this.diceDOm.src = dice + '.gif'
-              this.diceDOmNum.src = dice +'.png'
+              this.diceDOm.src = `dice/${dice}` + '.gif'
+              this.diceDOmNum.src = `dice/${dice}` +'.png'
 
 
                 if (dice === 6 && this.lastDice === 6){
@@ -73,9 +73,9 @@ class Game {
                       document.querySelector('#score-' + this.activePlayer).textContent = this.scores[this.activePlayer]
                   this.nextPlayer()
                   this.diceDOm.style.display = 'block'
-                  this.diceDOm.src = 'dice-1.gif'
+                  this.diceDOm.src = 'dice/dice-1.gif'
                   this.diceDOmNum.style.display = 'block'
-                  this.diceDOmNum.src = '1.png'
+                  this.diceDOmNum.src = 'dice/1.png'
 
                 } else if(dice !== 1) {
                   this.roundScore += dice;
@@ -84,7 +84,7 @@ class Game {
                   this.nextPlayer()
                   this.diceDOm.style.display = 'block'
 
-                  this.diceDOm.src = '6-2.gif'
+                  this.diceDOm.src = 'dice/6-2.gif'
 
                 }
                     this.lastDice = dice
