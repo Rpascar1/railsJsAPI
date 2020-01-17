@@ -14,9 +14,15 @@
   left: 100px;
   top: 15px;
   border-radius: 5px;
+  position: fixed;
 }
 
 .table-stats{
+  background: linear-gradient(to left,rgba(62, 20, 20, 100.00), rgba(62, 20, 20, .6));
+    position: fixed;
+  margin-top:80px;
+  margin-left:10px;
+  width:auto;
 /*
     background-image: url(dice/board.png);
     background-repeat: no-repeat;
