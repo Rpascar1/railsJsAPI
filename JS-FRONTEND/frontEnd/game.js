@@ -23,13 +23,16 @@ class Game {
      this.totalGamesEver = 0 // done
      this.totalGamesEverWon = 0 // done
      this.totalGamesEverLost = this.totalGamesEverWon //
+     this.doubleSix =0
+     this.averageRollsPerTurn = []
+
      // this.roundPointsLost = 0
      // this.pointResetDoubleSix = 0
      // this.gamePointsLostTotal = 0
      this.pointsBeforeHold = []//works
-     this.highestPointStreak // works
+     this.highestPointStreak = 0 // works
      this.averageHoldPointToal// works
-
+     this.roundDrawElement =  document.getElementById('stat-2').textContent = `Total draws this turn  ${this.totalRoundDraws}`
 
 
 
@@ -39,6 +42,10 @@ class Game {
 
 
   initBindingsAndEventListeners(){
+
+        this.statsMenu = document.querySelector('.ion-information-circled')
+
+        this.statsMenuOnOff =this.statsMenu.addEventListener('click', document.querySelector('.ion-information-circled'))
 
         this.nameInput = document.querySelector('.new-player')
         this.submitPlayerName = document.querySelector('.new-player-submit')
@@ -52,7 +59,18 @@ class Game {
         this.init = document.querySelector('.btn-new').addEventListener('click', this.handleNewGame)
         this.diceDOmNum = document.querySelector('.dice-DOm')
         this.diceDOmNum.style.display = 'none'
+        document.getElementById('stat-1').textContent = `Total draws this game: ${this.cardDraws}`
+        document.getElementById('stat-2').textContent = `Total draws this turn:  ${this.totalRoundDraws}`
+        document.getElementById('stat-3').textContent = `Avg. draws per turn: 0`
+        document.getElementById('stat-4').textContent = `Double Six draw Total: ${this.doubleSix}`
+        document.getElementById('stat-5').textContent = `Total draws of the One card: ${this.one}`
+        document.getElementById('stat-6').textContent = `Total turns taken: 0`
 
+        document.getElementById('stat-7').textContent = `Avg. draws before hold: 0`
+
+        this.roundTurnTotal
+        document.getElementById('stat-8').textContent = `Avg. points before hold: 0`
+        document.getElementById('stat-9').textContent = `Highest Point Streak: ${this.highestPointStreak}`
 
 
   }
@@ -98,8 +116,10 @@ console.log(this.playerData)
 
                 if (dice === 6 && this.lastDice === 6){
                   this.totalRoundDraws++
-                  console.log("Round Draw Total " + this.totalRoundDraws);
+
+                    document.getElementById('stat-2').textContent = `Total draws this turn:  ${this.totalRoundDraws}`
                   this.doubleSix++
+                      document.getElementById('stat-4').textContent = `Double Six draw Total: ${this.doubleSix}`
                   console.log("Double Six " + this.doubleSix);
                   this.scores[this.activePlayer] = 0
                       document.querySelector('#score-' + this.activePlayer).textContent = this.scores[this.activePlayer]
@@ -111,11 +131,14 @@ console.log(this.playerData)
 
                 } else if(dice !== 1) {
                   this.totalRoundDraws++
+                    document.getElementById('stat-2').textContent = `Total draws this turn:  ${this.totalRoundDraws}`
                   this.roundScore += dice;
                   document.querySelector("#current-" + this.activePlayer).textContent = this.roundScore
                 } else {
                   this.totalRoundDraws++
+                    document.getElementById('stat-2').textContent = `Total draws this turn:  ${this.totalRoundDraws}`
                   this.one++
+                  document.getElementById('stat-5').textContent = `Total draws of the One card: ${this.one}`
                   this.nextPlayer()
                   this.diceDOm.style.display = 'block'
 
@@ -139,15 +162,25 @@ console.log(this.playerData)
     }
 
   nextPlayer() {
+
+    this.averageRollsPerTurn.push(this.totalRoundDraws)
+    this.averageRolls = this.averageRollsPerTurn.reduce((a,b) => a + b, 0) / this.averageRollsPerTurn.length
+          document.getElementById('stat-3').textContent = `Avg. draws per turn:  ${Math.round(this.averageRolls)}`
+    this.totalRoundDraws = 0
+
+      document.getElementById('stat-1').textContent = `Total draws this game: ${this.cardDraws}`
     this.roundTurnTotal++
-    console.log("Total Number of Rounds " + this.roundTurnTotal );
-    console.log("1 Draw Total " + this.one)
+      document.getElementById('stat-6').textContent = `Total turns taken: ${this.roundTurnTotal}`
+
+    document.getElementById('stat-5').textContent = `Total draws of the One card: ${this.one}`
     console.log("Game Draw total " + this.cardDraws);
-    console.log("Round Draw Total " + this.totalRoundDraws);
+
+  document.getElementById('stat-2').textContent = `Total draws this turn:  ${this.totalRoundDraws}`
+
     this.roundDraws.push(this.totalRoundDraws)
     this.roundDrawsAverage = this.roundDraws.reduce((a,b) => a + b, 0) / this.roundDraws.length
-    console.log("Round Draws Average "+ this.roundDrawsAverage)
-    this.totalRoundDraws = 0
+    console.log("Round Draws Avg. "+ this.roundDrawsAverage.toFixed(1))
+
     this.activePlayer === 0 ? this.activePlayer = 1 : this.activePlayer = 0;
     this.roundScore = 0
     document.getElementById('current-0').textContent = '0'
@@ -184,19 +217,20 @@ postPlayer(player){
 
 
 handleBtnHold = () => {
+
   this.pointsBeforeHold.push(this.roundScore)
 
   this.averageHoldPointToal= this.pointsBeforeHold.reduce((a,b) => a + b, 0) / this.pointsBeforeHold.length
 
-  console.log("Average points before holding "+ this.averageHoldPointToal);
+        document.getElementById('stat-8').textContent = `Avg. points before hold: ${Math.round(this.averageHoldPointToal)}`
 
   this.holdsAverageTurns.push(this.totalRoundDraws)
+this.holdsAverage = Math.round(this.holdsAverageTurns.reduce((a,b) => a + b, 0) / this.holdsAverageTurns.length)
+      document.getElementById('stat-7').textContent = `Avg. draws before hold: ${this.holdsAverage}`
 
   this.highestPointStreak =  Math.max.apply(null, this.pointsBeforeHold)
-  console.log("High Steak!" + this.highestPointStreak);
+        document.getElementById('stat-9').textContent = `Highest Point Streak: ${this.highestPointStreak}`
 
-
-  console.log("Average turns before holding " + this.holdsAverageTurns.reduce((a,b) => a + b, 0) / this.holdsAverageTurns.length)
         if (this.gamePlaying){
           this.scores[this.activePlayer] += this.roundScore
 

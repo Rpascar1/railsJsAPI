@@ -8,9 +8,20 @@
     bottom: 0;
   left: 0;
 } */
+.info-btn{
+  color: #fff;
+  font-size: 12px;
+  left: 100px;
+  top: 15px;
+}
 
 .table-stats{
+  /* top: 5px; */
   color:#fff;
+  table-layout: fixed;
+  overflow: hidden;
+  /* padding-right: 10; */
+  /* margin: 15px; */
 }
 .ion-information-circled{
   color:#fff
