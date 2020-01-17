@@ -14,11 +14,11 @@ class Game {
      this.name = false
      this.playerNames = []
 //============Calculation Variables==============================
-     this.cardDraws = [0,0,0] // all card draws total
-     this.doubleSix = [0,0,0] // number of times back to back sixes were rolled
-     this.totalRoundDraws = [0,0,0] // total cards taken in one round
+     this.cardDraws = 0 // all card draws total
+     this.doubleSix = 0 // number of times back to back sixes were rolled
+     this.totalRoundDraws = 0 // total cards taken in one round
      this.one = 0 // if a 1 was rolled
-     this.roundDraws=[0,0,0] // array holding all draws per round for the game
+     this.roundDraws=[] // array holding all draws per round for the game
      this.roundTurnTotal = 0 // total turns per round
      this.holdsAverageTurns =[] //array holding round turns before hold is pressed
      this.totalGamesEver = 0 // done
@@ -30,12 +30,11 @@ class Game {
      this.pointsBeforeHold = 0
      this.highestPointStreak = 0
 
+
+
      this.initBindingsAndEventListeners()
      this.getPlayerData()
-
-
  }
-
 
 
   initBindingsAndEventListeners(){
@@ -84,8 +83,8 @@ console.log(this.playerData)
     }
 
     handleBtnRoll = () => {
-        this.cardDraws[this.activePlayer]++
-        this.cardDraws[2]++
+        this.cardDraws++
+
 
         if(this.gamePlaying){
           this.totalGamesEver++
@@ -97,13 +96,9 @@ console.log(this.playerData)
 
 
                 if (dice === 6 && this.lastDice === 6){
-                  console.log("TWO SIXES!!!!");
-                  this.arrayUpdate(this.totalRoundDraws)
-                  // this.totalRoundDraws[this.activePlayer]++
-                  // this.totalRoundDraws[2]++
+                  this.totalRoundDraws++
                   console.log("Round Draw Total " + this.totalRoundDraws);
-                  this.doubleSix[this.activePlayer]++
-                  this.doubleSix[2]++
+                  this.doubleSix++
                   console.log("Double Six " + this.doubleSix);
                   this.scores[this.activePlayer] = 0
                       document.querySelector('#score-' + this.activePlayer).textContent = this.scores[this.activePlayer]
@@ -114,16 +109,11 @@ console.log(this.playerData)
                   this.diceDOmNum.src = 'dice/1.png'
 
                 } else if(dice !== 1) {
-                  this.arrayUpdate(this.totalRoundDraws)
-
-                  // this.totalRoundDraws[this.activePlayer]++
-                  // this.totalRoundDraws[2]++
+                  this.totalRoundDraws++
                   this.roundScore += dice;
                   document.querySelector("#current-" + this.activePlayer).textContent = this.roundScore
                 } else {
-                  this.arrayUpdate(this.totalRoundDraws)
-                  // this.totalRoundDraws[this.activePlayer]++
-                  // this.totalRoundDraws[2]++
+                  this.totalRoundDraws++
                   this.one++
                   this.nextPlayer()
                   this.diceDOm.style.display = 'block'
@@ -145,12 +135,6 @@ console.log(this.playerData)
 
             this.finalScore.placeholder=`First to reach ${this.winningScore} wins!`
             this.finalScore.value = ""
-    }
-
-    arrayUpdate = (something) => {
-        something[this.activePlayer]++
-        something[2]++
-        debugger
     }
 
   nextPlayer() {
