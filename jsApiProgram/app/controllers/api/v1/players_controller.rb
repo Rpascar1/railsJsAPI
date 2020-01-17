@@ -12,12 +12,12 @@ render json: @player, status: 200
   end
 
   def create
-    @player = Player.create(player_params)
+    @player = Player.find_or_create_by(name:player_params[:name])
     render json: @player, status: 200
   end
 
   def update
-    @player = Player.find(params[:id])
+    @player = Player.find(params[:name])
     @player.update(player_params)
     render json: @player, status: 200
   end
