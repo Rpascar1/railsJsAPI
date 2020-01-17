@@ -33,6 +33,7 @@ class Game {
      this.highestPointStreak = 0 // works
      this.averageHoldPointToal// works
      this.roundDrawElement =  document.getElementById('stat-2').textContent = `Total draws this turn  ${this.totalRoundDraws}`
+     document.querySelector('.table-stats').style.display = 'none'
 
 
 
@@ -43,15 +44,19 @@ class Game {
 
   initBindingsAndEventListeners(){
 
-        this.statsMenu = document.querySelector('.ion-information-circled')
+        this.statsMenu = document.querySelector('.ion-information-circled' && ".info-btn")
 
-        this.statsMenuOnOff =this.statsMenu.addEventListener('click', document.querySelector('.ion-information-circled'))
+        this.statsMenuOnOff = this.statsMenu.addEventListener('click', this.handleStatToggle  )
 
         this.nameInput = document.querySelector('.new-player')
+
         this.submitPlayerName = document.querySelector('.new-player-submit')
         this.submitPlayerName.addEventListener('click',this.handleSubmitPlayerName)
+
         this.player1name = document.getElementById('name-0')
+
         this.player2name = document.getElementById('name-1')
+
         this.roll = document.querySelector('.btn-roll').addEventListener('click', this.handleBtnRoll)
         this.diceDOm = document.querySelector('.dice')
         this.finalScore = document.querySelector('.final-score')
@@ -215,6 +220,14 @@ postPlayer(player){
     console.log('Success:', player.name)
     }
 
+handleStatToggle = () => {
+  if (document.querySelector('.table-stats').style.display === 'none'){
+    document.querySelector('.table-stats').style.display = 'block'
+  } else{
+      document.querySelector('.table-stats').style.display = 'none'
+  }
+
+}
 
 handleBtnHold = () => {
 

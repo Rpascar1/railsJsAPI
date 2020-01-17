@@ -13,15 +13,21 @@
   font-size: 12px;
   left: 100px;
   top: 15px;
+  border-radius: 5px;
 }
 
 .table-stats{
-  /* top: 5px; */
+/*
+    background-image: url(dice/board.png);
+    background-repeat: no-repeat;
+ background-size: 48%; */
+
+  /* position: absolute; */
   color:#fff;
-  table-layout: fixed;
+ table-layout: fixed;
   overflow: hidden;
-  /* padding-right: 10; */
-  /* margin: 15px; */
+  padding-right: 10
+   margin: 15px;
 }
 .ion-information-circled{
   color:#fff
