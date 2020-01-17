@@ -8,27 +8,28 @@ class Game {
      this.roundScore = 0
      this.activePlayer = 0
      this.gamePlaying = true
-
      this.winningScore = 100
-
      this.name = false
      this.playerNames = []
 //============Calculation Variables==============================
      this.cardDraws = 0 // all card draws total
      this.doubleSix = 0 // number of times back to back sixes were rolled
-     this.totalRoundDraws = 0 // total cards taken in one round
+     this.totalRoundDraws = 0 // total cards taken in one player turn resets to zero every player switch
      this.one = 0 // if a 1 was rolled
-     this.roundDraws=[] // array holding all draws per round for the game
-     this.roundTurnTotal = 0 // total turns per round
+     this.roundDraws=[] // array holding all draws per round for the game  will be used to calculate total round draw average to be displayed
+     this.roundDrawsAverage // see above this is the aggregate average
+     this.roundTurnTotal = 0 // total of each players turns per game
      this.holdsAverageTurns =[] //array holding round turns before hold is pressed
      this.totalGamesEver = 0 // done
      this.totalGamesEverWon = 0 // done
      this.totalGamesEverLost = this.totalGamesEverWon //
-     this.roundPointsLost = 0
-     this.pointResetDoubleSix = 0
-     this.gamePointsLostTotal = 0
-     this.pointsBeforeHold = 0
-     this.highestPointStreak = 0
+     // this.roundPointsLost = 0
+     // this.pointResetDoubleSix = 0
+     // this.gamePointsLostTotal = 0
+     this.pointsBeforeHold = []//works
+     this.highestPointStreak // works
+     this.averageHoldPointToal// works
+
 
 
 
@@ -144,7 +145,8 @@ console.log(this.playerData)
     console.log("Game Draw total " + this.cardDraws);
     console.log("Round Draw Total " + this.totalRoundDraws);
     this.roundDraws.push(this.totalRoundDraws)
-    console.log("Round Draws Average "+ this.roundDraws.reduce((a,b) => a + b, 0) / this.roundDraws.length)
+    this.roundDrawsAverage = this.roundDraws.reduce((a,b) => a + b, 0) / this.roundDraws.length
+    console.log("Round Draws Average "+ this.roundDrawsAverage)
     this.totalRoundDraws = 0
     this.activePlayer === 0 ? this.activePlayer = 1 : this.activePlayer = 0;
     this.roundScore = 0
@@ -182,7 +184,17 @@ postPlayer(player){
 
 
 handleBtnHold = () => {
+  this.pointsBeforeHold.push(this.roundScore)
+
+  this.averageHoldPointToal= this.pointsBeforeHold.reduce((a,b) => a + b, 0) / this.pointsBeforeHold.length
+
+  console.log("Average points before holding "+ this.averageHoldPointToal);
+
   this.holdsAverageTurns.push(this.totalRoundDraws)
+
+  this.highestPointStreak =  Math.max.apply(null, this.pointsBeforeHold)
+  console.log("High Steak!" + this.highestPointStreak);
+
 
   console.log("Average turns before holding " + this.holdsAverageTurns.reduce((a,b) => a + b, 0) / this.holdsAverageTurns.length)
         if (this.gamePlaying){

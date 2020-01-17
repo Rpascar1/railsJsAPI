@@ -9,6 +9,13 @@
   left: 0;
 } */
 
+.table-stats{
+  color:#fff;
+}
+.ion-information-circled{
+  color:#fff
+}
+
 .final-score {
   position: absolute;
   left: 50%;
