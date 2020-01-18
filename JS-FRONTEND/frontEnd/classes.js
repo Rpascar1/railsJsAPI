@@ -2,9 +2,9 @@
 class Player {
   constructor(name){
   this.name = name;
-
-  }
-
+  this.totalGames = 0;
+    }
+}
   // getPlayerData(){
   //   return fetch('http://localhost:3000/api/v1/players/')
   //     .then(res => res.json())
@@ -25,7 +25,7 @@ class Player {
   //       })
   //   })
 
-}
+
 
 const game = new Game()
 

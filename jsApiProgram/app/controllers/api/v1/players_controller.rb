@@ -17,7 +17,7 @@ render json: @player, status: 200
   end
 
   def update
-    @player = Player.find(params[:name])
+    @player = Player.find(name:player_params[:name])
     @player.update(player_params)
     render json: @player, status: 200
   end
@@ -33,7 +33,7 @@ render json: @player, status: 200
 
 
   def player_params
-        params.require(:player).permit(:name)
+        params.require(:player).permit(:name,:totalGames)
   end
 
 
