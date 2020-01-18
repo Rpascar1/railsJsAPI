@@ -10,7 +10,7 @@ class Game {
      this.gamePlaying = true
      this.winningScore = 100
      this.name = false
-     this.playerNames = []
+     this.players = []
 //============Calculation Variables==============================
      this.cardDraws = 0 // all card draws total
      this.doubleSix = 0 // number of times back to back sixes were rolled
@@ -85,20 +85,31 @@ class Game {
 
         if (this.name === false){
         this.player1 = new Player(this.nameInput.value)
-          this.postPlayer(this.player1)
+
+        this.postPlayer(this.player1)
+
         this.player1name.textContent = this.player1.name
+
         this.name = true
+
         this.nameInput.placeholder='Enter Player 2 name'
+
         this.nameInput.value = '';
 
       } else if (this.name === true) {
-        this.player2 = new Player(this.nameInput.value)
-            this.postPlayer(this.player2)
-        this.player2name.textContent = this.player2.name
-        this.nameInput.placeholder='May you be a champion!'
-        this.nameInput.value = ''
-        document.querySelector('.new-player-submit').style.display = 'none'
 
+        this.player2 = new Player(this.nameInput.value)
+
+        this.postPlayer(this.player2)
+
+        this.player2name.textContent = this.player2.name
+
+        this.nameInput.placeholder='May you be a champion!'
+
+        this.nameInput.value = ''
+
+        document.querySelector('.new-player-submit').style.display = 'none'
+        this.players=[this.player1,this.player2]
       }
 
 console.log(this.playerData)
@@ -107,11 +118,14 @@ console.log(this.playerData)
     }
 
     handleBtnRoll = () => {
+
         this.cardDraws++
 
 
         if(this.gamePlaying){
+
           this.totalGamesEver++
+          this.player1
           let dice = Math.floor((Math.random()) * 6) + 1
               this.diceDOm.style.display = 'block'
               this.diceDOmNum.style.display = 'block'
@@ -204,16 +218,38 @@ console.log(this.playerData)
       })
   }
 
-postPlayer(player){
-  fetch('http://localhost:3000/api/v1/players/',{
-      method: 'POST',
-      headers: {'Content-Type': 'application/json',
-      Accept: "application/json"
-    },
-      body: JSON.stringify({
-        'name': player.name
-      })
-  })
+  // getGameData(){
+  //   return fetch('http://localhost:3000/api/v1/games/')
+  //     .then(res => res.json())
+  //     .then(gameData => {
+  //       this.gameData = gameData
+  //     })
+  // }
+
+  postPlayer(player){
+    fetch('http://localhost:3000/api/v1/players/',{
+        method: 'POST',
+        headers: {'Content-Type': 'application/json',
+        Accept: "application/json"
+      },
+        body: JSON.stringify({
+          'name': player.name
+        })
+    })
+
+    // postGame(game){
+    //   fetch('http://localhost:3000/api/v1/games/',{
+    //       method: 'POST',
+    //       headers: {'Content-Type': 'application/json',
+    //       Accept: "application/json"
+    //     },
+    //       body: JSON.stringify({
+    //         'totalGamesEver': game.totalGamesEver
+    //       })
+    //   })
+
+
+
   .then(response => response.json())
   // .then((player_obj) => {
   //   let new_player = player_obj
@@ -276,6 +312,7 @@ this.holdsAverage = Math.round(this.holdsAverageTurns.reduce((a,b) => a + b, 0) 
         }
 
                 handleNewGame = () => {
+
                             this.name = false
                             this.scores = [0,0];
                             this.roundScore = 0;
@@ -297,6 +334,7 @@ this.holdsAverage = Math.round(this.holdsAverageTurns.reduce((a,b) => a + b, 0) 
                             document.querySelector('.player-1-panel').classList.remove('active')
                             document.querySelector('.player-0-panel').classList.add('active')
                             document.querySelector('.new-player-submit').style.display = 'block'
+                            document.querySelector('.new-player').value=''  
                             document.querySelector('.new-player').placeholder='Enter Player1 name'
                             this.diceDOm.style.display = 'block'
                             this.diceDOm.src = 'other-graveyard.png'
