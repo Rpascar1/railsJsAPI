@@ -369,7 +369,7 @@ class Game {
         this.nextPlayer()
 
         this.diceDOm.style.display = 'block'
-        this.diceDOm.src = 'other-graveyard.png'
+        this.diceDOm.src = 'dice/other-graveyard.png'
 
       }
       this.updatePlayer(this.player2)
@@ -406,7 +406,7 @@ class Game {
     document.querySelector('.new-player').value = ''
     document.querySelector('.new-player').placeholder = 'Enter Player1 name'
     this.diceDOm.style.display = 'block'
-    this.diceDOm.src = 'other-graveyard.png'
+    this.diceDOm.src = 'dice/other-graveyard.png'
     this.cardDraws = 0
     this.totalRoundDraws = 0
     this.averageRolls =
@@ -424,14 +424,3 @@ class Game {
 
 
 }
-
-
-// let player1name, player2name, scores, roundScore, activePlayer,i, gamePlaying, lastDice, winningScore = 100
-// let diceDOm = document.querySelector('.dice')
-// let name = false
-// let playerArray = []//done
-//
-// let playerRolls = [[],[]]
-// let averageRollsPerTurn = [[],[]]
-// let averageRoundScore = [[],[]]
-// let gameWinner = []
