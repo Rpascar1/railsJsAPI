@@ -292,3 +292,48 @@ i {
 
 .winner { background-color: #f7f7f7; }
 .winner .player-name { font-weight: 300; color: #EB4D4D; }
+
+
+.flip-card {
+  position: absolute;
+  left: 50%;
+  top: 178px;
+  background-color: transparent;
+  width: 136px;
+  height: 179px;
+  perspective: 1000px;
+  transform: translateX(-50%);
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: relative;
+  width:100%;
+  height: 10%;
+  /* backface-visibility: hidden; */
+}
+
+.flip-card-front {
+  /* background-color: #bbb; */
+  top: -200px;
+  color: black;
+}
+
+.flip-card-back {
+  /* background-color: #2980b9; */
+  /* color: white; */
+  transform: rotateY(180deg);
+}

@@ -12,7 +12,6 @@ class Game {
      this.name = false
      this.players = []
 
-
 //============Calculation Variables==============================
      this.cardDraws = 0 // all card draws total
      this.doubleSix = 0 // number of times back to back sixes were rolled
@@ -27,10 +26,6 @@ class Game {
      this.totalGamesEverLost = this.totalGamesEverWon //
      this.doubleSix =0
      this.averageRollsPerTurn = []
-
-     // this.roundPointsLost = 0
-     // this.pointResetDoubleSix = 0
-     // this.gamePointsLostTotal = 0
      this.pointsBeforeHold = []//works
      this.highestPointStreak = 0 // works
      this.averageHoldPointToal// works
@@ -38,12 +33,11 @@ class Game {
      document.querySelector('.table-stats').style.display = 'none'
 
 
-
      this.initBindingsAndEventListeners()
      this.getPlayerData()
+     console.log(this.playerData);
 
  }
-
 
   initBindingsAndEventListeners(){
 
@@ -116,7 +110,6 @@ class Game {
     this.players=[this.player1,this.player2]
 console.log(this.playerData)
 
-          // this.playerNames.push()
     }
 
     handleBtnRoll = () => {
@@ -220,14 +213,6 @@ console.log(this.playerData)
       })
   }
 
-  // getGameData(){
-  //   return fetch('http://localhost:3000/api/v1/games/')
-  //     .then(res => res.json())
-  //     .then(gameData => {
-  //       this.gameData = gameData
-  //     })
-  // }
-
   postPlayer(player){
     fetch('http://localhost:3000/api/v1/players/',{
         method: 'POST',
@@ -238,19 +223,6 @@ console.log(this.playerData)
           'name': player.name
         })
     })
-
-    // postGame(game){
-    //   fetch('http://localhost:3000/api/v1/games/',{
-    //       method: 'POST',
-    //       headers: {'Content-Type': 'application/json',
-    //       Accept: "application/json"
-    //     },
-    //       body: JSON.stringify({
-    //         'totalGamesEver': game.totalGamesEver
-    //       })
-    //   })
-
-
 
   .then(response => response.json())
   // .then((player_obj) => {
@@ -301,7 +273,6 @@ this.holdsAverage = Math.round(this.holdsAverageTurns.reduce((a,b) => a + b, 0) 
               this.players[this.activePlayer].totalGamesWon++
             document.querySelector('.player-' + this.activePlayer + '-panel').classList.remove('active')
 
-
             this.gamePlaying = false
             this.diceDOm.style.display = 'block'
             this.diceDOm.src = 'champ.gif'
@@ -319,7 +290,6 @@ this.holdsAverage = Math.round(this.holdsAverageTurns.reduce((a,b) => a + b, 0) 
           this.updatePlayer(this.player2)
 
         }
-
                 handleNewGame = () => {
 
                             this.name = false
@@ -347,20 +317,8 @@ this.holdsAverage = Math.round(this.holdsAverageTurns.reduce((a,b) => a + b, 0) 
                             document.querySelector('.new-player').placeholder='Enter Player1 name'
                             this.diceDOm.style.display = 'block'
                             this.diceDOm.src = 'other-graveyard.png'
-
                           }
 
-
+            
 
 }
-
-
-// let player1name, player2name, scores, roundScore, activePlayer,i, gamePlaying, lastDice, winningScore = 100
-// let diceDOm = document.querySelector('.dice')
-// let name = false
-// let playerArray = []//done
-//
-// let playerRolls = [[],[]]
-// let averageRollsPerTurn = [[],[]]
-// let averageRoundScore = [[],[]]
-// let gameWinner = []
