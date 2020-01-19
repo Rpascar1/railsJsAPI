@@ -11,6 +11,8 @@ class Game {
      this.winningScore = 100
      this.name = false
      this.players = []
+
+
 //============Calculation Variables==============================
      this.cardDraws = 0 // all card draws total
      this.doubleSix = 0 // number of times back to back sixes were rolled
@@ -39,6 +41,7 @@ class Game {
 
      this.initBindingsAndEventListeners()
      this.getPlayerData()
+
  }
 
 
@@ -77,7 +80,6 @@ class Game {
         document.getElementById('stat-8').textContent = `Avg. points before hold: 0`
         document.getElementById('stat-9').textContent = `Highest Point Streak: ${this.highestPointStreak}`
 
-
   }
 
     handleSubmitPlayerName = () => {
@@ -109,9 +111,9 @@ class Game {
         this.nameInput.value = ''
 
         document.querySelector('.new-player-submit').style.display = 'none'
-        this.players=[this.player1,this.player2]
-      }
 
+      }
+    this.players=[this.player1,this.player2]
 console.log(this.playerData)
 
           // this.playerNames.push()
@@ -125,7 +127,7 @@ console.log(this.playerData)
         if(this.gamePlaying){
 
           this.totalGamesEver++
-          this.player1
+
           let dice = Math.floor((Math.random()) * 6) + 1
               this.diceDOm.style.display = 'block'
               this.diceDOmNum.style.display = 'block'
@@ -289,10 +291,16 @@ this.holdsAverage = Math.round(this.holdsAverageTurns.reduce((a,b) => a + b, 0) 
 
 
           if (this.scores[this.activePlayer] >= this.winningScore ) {
+
             document.querySelector('#name-' + this.activePlayer).textContent = 'Winner!';
+
             document.querySelector('.player-' + this.activePlayer + '-panel').classList.add('winner')
+
             this.totalGamesEverWon++
+              this.players[this.activePlayer].totalGames++
+              this.players[this.activePlayer].totalGamesWon++
             document.querySelector('.player-' + this.activePlayer + '-panel').classList.remove('active')
+
 
             this.gamePlaying = false
             this.diceDOm.style.display = 'block'
@@ -307,7 +315,8 @@ this.holdsAverage = Math.round(this.holdsAverageTurns.reduce((a,b) => a + b, 0) 
             }
           }
 
-
+          this.updatePlayer(this.player1)
+          this.updatePlayer(this.player2)
 
         }
 
@@ -334,7 +343,7 @@ this.holdsAverage = Math.round(this.holdsAverageTurns.reduce((a,b) => a + b, 0) 
                             document.querySelector('.player-1-panel').classList.remove('active')
                             document.querySelector('.player-0-panel').classList.add('active')
                             document.querySelector('.new-player-submit').style.display = 'block'
-                            document.querySelector('.new-player').value=''  
+                            document.querySelector('.new-player').value=''
                             document.querySelector('.new-player').placeholder='Enter Player1 name'
                             this.diceDOm.style.display = 'block'
                             this.diceDOm.src = 'other-graveyard.png'

@@ -7,7 +7,7 @@ class Api::V1::PlayersController < ApplicationController
   end
 
   def show
-    @player = Player.find(params[:id])
+    @player = Player.find_by(name:player_params[:name])
 render json: @player, status: 200
   end
 
@@ -17,23 +17,20 @@ render json: @player, status: 200
   end
 
   def update
-    @player = Player.find(name:player_params[:name])
+
+    @player = Player.find(params[:id])
+
     @player.update(player_params)
     render json: @player, status: 200
   end
 
-  def destroy
-  @player = Player.find(params[:id])
-  @player.delete
 
-  render json: {playerId: @player.id}
-  end
 
   private
 
 
   def player_params
-        params.require(:player).permit(:name,:totalGames)
+        params.require(:player).permit(:name,:totalGames,:totalGamesWon,:totalGamesLost,:id,:playerHighestPointStreak )
   end
 
 

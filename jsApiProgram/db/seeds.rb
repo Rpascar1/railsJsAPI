@@ -7,19 +7,19 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-Player.create([
-
-  {name:"brad"},
-  {name:"james"},
-  {name:"Darren"},
-  {name:"Maxine"},
-  {name:"Jacob"},
-  {name:"Myer"},
-  {name:"Rummy"},
-  {name:"George"},
-  {name:"Mitchell"}
-
-  ])
+# Player.create([
+#
+#   {name:"brad"},
+#   {name:"james"},
+#   {name:"Darren"},
+#   {name:"Maxine"},
+#   {name:"Jacob"},
+#   {name:"Myer"},
+#   {name:"Rummy"},
+#   {name:"George"},
+#   {name:"Mitchell"}
+#
+#   ])
 
 # Player.create(name:"brad")
 # Player.create(name:"james")
