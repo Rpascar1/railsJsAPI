@@ -169,11 +169,21 @@ background-repeat: no-repeat;
     margin-bottom: 10px;
     position: relative;
 }
-.player-score {
+
+.player-score1 {
     text-align: center;
     font-size: 80px;
     font-weight: 100;
     color: #EB4D4D;
+    margin-right: -80px;
+    margin-bottom: 130px;
+}
+.player-score2 {
+    text-align: center;
+    font-size: 80px;
+    font-weight: 100;
+    color: #EB4D4D;
+    margin-right: 100px;
     margin-bottom: 130px;
 }
 

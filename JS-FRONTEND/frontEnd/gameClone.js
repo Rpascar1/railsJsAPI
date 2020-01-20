@@ -381,7 +381,7 @@ postGame = (stats) => {
     document.getElementById('stat-9').textContent = `Highest Point Streak: ${this.highestPointStreak}`
 
     this.players[this.activePlayer].playerHighestPointStreak = this.highestPointStreak
-
+      //only player with actual highest streak is updated
     if (this.gamePlaying) {
       this.scores[this.activePlayer] += this.roundScore
 
