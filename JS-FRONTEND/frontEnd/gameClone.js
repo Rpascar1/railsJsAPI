@@ -221,6 +221,7 @@ class Game {
 
     }
   document.getElementById("100d").disabled = true;
+
     this.finalScore.placeholder = `First to reach ${this.winningScore} wins!`
     this.finalScore.value = ""
   }
@@ -444,6 +445,9 @@ this.stats = [this.winner,this.loser,this.cardDraws,this.one, this.highestPointS
   }
 
   handleNewGame = () => {
+
+    document.getElementById("100d").disabled = false;
+      document.getElementById("name-input").disabled = false;
     this.player1 = null
     this.player2 = null
     this.name = false
