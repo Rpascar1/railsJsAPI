@@ -16,14 +16,28 @@ ActiveRecord::Schema.define(version: 2020_01_19_005353) do
   enable_extension "plpgsql"
 
   create_table "games", force: :cascade do |t|
-    t.string "winner"
+    t.string "matchName"
+    t.integer "winnerId"
+    t.string "winnerName"
+    t.integer "loserId"
+    t.string "loserName"
+    t.integer "cardDraws"
+    t.integer "holdsAverage"
+    t.integer "highestPointStreak"
+    t.integer "averageHoldPointToal"
+    t.integer "doubleSix"
+    t.integer "one"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "player_games", force: :cascade do |t|
+    t.bigint "game_id"
+    t.bigint "player_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["game_id"], name: "index_player_games_on_game_id"
+    t.index ["player_id"], name: "index_player_games_on_player_id"
   end
 
   create_table "players", force: :cascade do |t|

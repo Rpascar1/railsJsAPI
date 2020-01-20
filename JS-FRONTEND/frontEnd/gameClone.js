@@ -20,10 +20,11 @@ class Game {
     this.roundTurnTotal = 0 // total of each players turns per game
     this.holdsAverageTurns = [] //array holding round turns before hold is pressed
     this.totalGamesEver = 0 // done
-    this.totalGamesEverWon = 0 // done
-    this.totalGamesEverLost = this.totalGamesEverWon //
+    //this.totalGamesEverWon = 0 // done
+    this.winner
     this.doubleSix = 0
-
+    this.player1
+    this.player2
     this.averageRollsPerTurn = []
     this.pointsBeforeHold = [] //works
     this.highestPointStreak = 0 // works
@@ -36,6 +37,7 @@ class Game {
 
     this.initBindingsAndEventListeners()
     this.getPlayerData()
+    this.getGameData()
 
   }
 
@@ -82,6 +84,10 @@ class Game {
   handleSubmitPlayerName = () => {
     this.check = this.playerData.find(element => element.name === this.nameInput.value)
     if (this.name === false) {
+      if (this.nameInput.value === ""){
+        alert("ENTER PLAYER 1 NAME")
+      return
+      }
       if (typeof this.check === 'undefined') {
         this.player1 = new Player(this.nameInput.value)
         this.player1name.textContent = this.player1.name
@@ -104,8 +110,12 @@ class Game {
         this.player1.totalGames += 1
       })
 
-      console.log(this.player1);
-    } else if (this.name === true) {
+    } else if (this.name === true){
+
+    if (this.nameInput.value === ""){
+      alert("ENTER PLAYER 2 NAME")
+      return
+    }
       this.check = this.playerData.find(element => element.name === this.nameInput.value)
       if (typeof this.check === 'undefined') {
         this.player2 = new Player(this.nameInput.value)
@@ -130,20 +140,35 @@ class Game {
         this.player2 = player
         this.player2.totalGames += 1
       })
-      console.log(this.player2);
-      console.log(this.playerData)
+
       this.players = [this.player1, this.player2]
 
     }
-  }
-  handleBtnRoll = () => {
 
+  }
+
+  nameCheck =()=>{
+    if(this.player1 === undefined ||this.player1 === null || this.player2 === undefined || this.player2 === null){
+    alert("PLEASE ENTER PLAYER NAME")
+
+    location.reload()
+    this.handleNewGame()
+
+  } else{
+
+    return
+  }
+
+}
+
+  handleBtnRoll = () => {
+      this.nameCheck()
     this.cardDraws++
 
 
     if (this.gamePlaying) {
 
-      this.player1
+      //this.player1
       let dice = Math.floor((Math.random()) * 6) + 1
       this.diceDOm.style.display = 'block'
       this.diceDOmNum.style.display = 'block'
@@ -157,7 +182,7 @@ class Game {
         document.getElementById('stat-2').textContent = `Total draws this turn:  ${this.totalRoundDraws}`
         this.doubleSix++
         document.getElementById('stat-4').textContent = `Double Six draw Total: ${this.doubleSix}`
-        console.log("Double Six " + this.doubleSix);
+        c
         this.scores[this.activePlayer] = 0
         document.querySelector('#score-' + this.activePlayer).textContent = this.scores[this.activePlayer]
         this.nextPlayer()
@@ -198,6 +223,7 @@ class Game {
     this.finalScore.value = ""
   }
 
+
   nextPlayer() {
 
     this.averageRollsPerTurn.push(this.totalRoundDraws)
@@ -210,13 +236,13 @@ class Game {
     document.getElementById('stat-6').textContent = `Total turns taken: ${this.roundTurnTotal}`
 
     document.getElementById('stat-5').textContent = `Total draws of the One card: ${this.one}`
-    console.log("Game Draw total " + this.cardDraws);
+
 
     document.getElementById('stat-2').textContent = `Total draws this turn:  ${this.totalRoundDraws}`
 
     this.roundDraws.push(this.totalRoundDraws)
     this.roundDrawsAverage = this.roundDraws.reduce((a, b) => a + b, 0) / this.roundDraws.length
-    console.log("Round Draws Avg. " + this.roundDrawsAverage.toFixed(1))
+    
 
     this.activePlayer === 0 ? this.activePlayer = 1 : this.activePlayer = 0;
     this.roundScore = 0
@@ -236,13 +262,14 @@ class Game {
       })
   }
 
-  // getGameData(){
-  //   return fetch('http://localhost:3000/api/v1/games/')
-  //     .then(res => res.json())
-  //     .then(gameData => {
-  //       this.gameData = gameData
-  //     })
-  // }
+  getGameData() {
+    fetch('http://localhost:3000/api/v1/games')
+      .then(res => res.json())
+      .then(gameData => {
+        this.gameData = gameData
+console.log(this.gameData);
+      })
+  }
 
   postPlayer = (player) => {
     return fetch('http://localhost:3000/api/v1/players/', {
@@ -257,6 +284,7 @@ class Game {
           }
         })
       })
+
       .then(response => response.json())
       .then(player => {
         let check = this.playerData.find(element => element.name === player.name)
@@ -268,8 +296,49 @@ class Game {
     // .then((player_obj) => {
     //   let new_player = player_obj
     console.log('Success:', player.name)
-  } //any attribute must be added to the shcema and permit player params and update method on rails side
+  }
 
+//make a params object to pass in for games
+postGame = (stats) => {
+  return fetch(`http://localhost:3000/api/v1/games`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: "application/json"
+      },
+      body: JSON.stringify({
+        game: {
+          'player_ids': [this.player1.id,this.player2.id],
+          'matchName': `${stats[0].name}` + '&' + `${stats[1].name} `+ `${Date()}`,
+          'winnerId': stats[0].id,
+          'winnerName': stats[0].name,
+          'loserId': stats[1].id,
+          'loserName': stats[1].name,
+          'cardDraws': stats[2],
+          'holdsAverage': stats[7],
+          'highestPointStreak': stats[4],
+          'averageHoldPointToal': stats[6],
+          'doubleSix': stats[5],
+          'one': stats[3]
+
+        }
+      })
+    })
+    .then(response => response.json())
+    .then(game => {
+      debugger
+      let check = this.gameData.find(element => element.id === game.id)
+      if (!check) {
+        this.gameData.push(game)
+      }
+      return game
+    })
+// .then((player_obj) => {
+  //   let new_player = player_obj
+  console.log('Success:', stats)
+}
+
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++=
 
   updatePlayer(player) {
 
@@ -307,7 +376,7 @@ class Game {
   }
 
   handleBtnHold = () => {
-
+  this.nameCheck()
     this.pointsBeforeHold.push(this.roundScore)
 
     this.averageHoldPointToal = this.pointsBeforeHold.reduce((a, b) => a + b, 0) / this.pointsBeforeHold.length
@@ -340,21 +409,28 @@ class Game {
         if (this.players[0] === this.players[this.activePlayer]) {
 
           this.player1.totalGamesWon+=1
-
+          this.winner = this.player1
           this.player2.totalGamesLost+=1
-
+          this.loser = this.player2
         } else {
 
           this.player2.totalGamesWon+=1
-
+          this.winner = this.player2
           this.player1.totalGamesLost+=1
+          this.loser = this.player1
         }
+this.stats = [this.winner,this.loser,this.cardDraws,this.one, this.highestPointStreak, this.doubleSix, this.averageHoldPointToal, this.holdsAverage]
 
-        //this.totalGamesEverWon++
+
+
+    this.postGame(this.stats)
+
 
 
 
         document.querySelector('.player-' + this.activePlayer + '-panel').classList.remove('active')
+
+
 
 
         this.gamePlaying = false

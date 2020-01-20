@@ -8,33 +8,17 @@ class Player {
   this.playerHighestPointStreak = 0;
     }
 }
-  // getPlayerData(){
-  //   return fetch('http://localhost:3000/api/v1/players/')
-  //     .then(res => res.json())
-  //     .then(playerData => {
-  //       this.playerData = playerData
-  //
-  //     })
-  // }
-  //
-  // postPlayer(player){
-  //   fetch('http://localhost:3000/api/v1/players/',{
-  //       method: 'POST',
-  //       headers: {'Content-Type': 'application/json',
-  //       Accept: "application/json"
-  //     },
-  //       body: JSON.stringify({
-  //         'name': player.name
-  //       })
-  //   })
-
-
 
 const game = new Game()
 
-// class Game {
-//   constructor(playerArray){
-//   this.gamePlayers = playerArray;
+// class Stats {
+//   constuctor(winner){
 //
+//     this.winner = winner;
+//     this.loser;
+//     this.roundDrawsAverage;
+//     this.holdsAverageTurns;
+//     this.gameHighestPointStreak;
+//     this.averageRollsPerTurn;
 //   }
 // }

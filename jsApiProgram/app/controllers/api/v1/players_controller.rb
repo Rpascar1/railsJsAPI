@@ -8,7 +8,7 @@ class Api::V1::PlayersController < ApplicationController
 
   def show
     @player = Player.find_by(name:player_params[:name])
-render json: @player, status: 200
+    render json: @player, status: 200
   end
 
   def create
@@ -30,7 +30,7 @@ render json: @player, status: 200
 
 
   def player_params
-        params.require(:player).permit(:name,:totalGames,:totalGamesWon,:totalGamesLost,:id,:playerHighestPointStreak )
+        params.require(:player).permit(:name,:totalGames,:totalGamesWon,:totalGamesLost,:id,:playerHighestPointStreak)
   end
 
 
