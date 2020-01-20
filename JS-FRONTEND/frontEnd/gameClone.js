@@ -37,8 +37,7 @@ class Game {
 
     this.initBindingsAndEventListeners()
     this.getPlayerData()
-    this.getGameData()
-
+    console.log(Date())
   }
 
 
@@ -110,6 +109,7 @@ class Game {
         this.player1.totalGames += 1
       })
 
+      console.log(this.player1);
     } else if (this.name === true){
 
     if (this.nameInput.value === ""){
@@ -140,11 +140,11 @@ class Game {
         this.player2 = player
         this.player2.totalGames += 1
       })
-
+      console.log(this.player2);
+      console.log(this.playerData)
       this.players = [this.player1, this.player2]
 
     }
-
   }
 
   nameCheck =()=>{
@@ -155,7 +155,6 @@ class Game {
     this.handleNewGame()
 
   } else{
-
     return
   }
 
@@ -182,7 +181,7 @@ class Game {
         document.getElementById('stat-2').textContent = `Total draws this turn:  ${this.totalRoundDraws}`
         this.doubleSix++
         document.getElementById('stat-4').textContent = `Double Six draw Total: ${this.doubleSix}`
-        c
+        console.log("Double Six " + this.doubleSix);
         this.scores[this.activePlayer] = 0
         document.querySelector('#score-' + this.activePlayer).textContent = this.scores[this.activePlayer]
         this.nextPlayer()
@@ -236,13 +235,13 @@ class Game {
     document.getElementById('stat-6').textContent = `Total turns taken: ${this.roundTurnTotal}`
 
     document.getElementById('stat-5').textContent = `Total draws of the One card: ${this.one}`
-
+    console.log("Game Draw total " + this.cardDraws);
 
     document.getElementById('stat-2').textContent = `Total draws this turn:  ${this.totalRoundDraws}`
 
     this.roundDraws.push(this.totalRoundDraws)
     this.roundDrawsAverage = this.roundDraws.reduce((a, b) => a + b, 0) / this.roundDraws.length
-    
+    console.log("Round Draws Avg. " + this.roundDrawsAverage.toFixed(1))
 
     this.activePlayer === 0 ? this.activePlayer = 1 : this.activePlayer = 0;
     this.roundScore = 0
@@ -262,14 +261,7 @@ class Game {
       })
   }
 
-  getGameData() {
-    fetch('http://localhost:3000/api/v1/games')
-      .then(res => res.json())
-      .then(gameData => {
-        this.gameData = gameData
-console.log(this.gameData);
-      })
-  }
+  
 
   postPlayer = (player) => {
     return fetch('http://localhost:3000/api/v1/players/', {
@@ -325,14 +317,7 @@ postGame = (stats) => {
       })
     })
     .then(response => response.json())
-    .then(game => {
-      debugger
-      let check = this.gameData.find(element => element.id === game.id)
-      if (!check) {
-        this.gameData.push(game)
-      }
-      return game
-    })
+
 // .then((player_obj) => {
   //   let new_player = player_obj
   console.log('Success:', stats)
