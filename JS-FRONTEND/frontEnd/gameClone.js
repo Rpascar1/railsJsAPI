@@ -131,6 +131,9 @@ class Game {
         this.player2 = this.check
         this.player2name.textContent = this.player2.name
         this.nameInput.placeholder = 'May you be a champion!'
+        document.getElementById("name-input").disabled = true;
+
+
         this.nameInput.value = '';
 
       }
@@ -217,7 +220,7 @@ class Game {
       }
 
     }
-
+  document.getElementById("100d").disabled = true;
     this.finalScore.placeholder = `First to reach ${this.winningScore} wins!`
     this.finalScore.value = ""
   }
@@ -261,7 +264,7 @@ class Game {
       })
   }
 
-  
+
 
   postPlayer = (player) => {
     return fetch('http://localhost:3000/api/v1/players/', {

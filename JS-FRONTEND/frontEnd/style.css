@@ -111,7 +111,7 @@ body {
 }
 
 .wrapper {
-    width: 1200px;
+    width: 1000px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -129,7 +129,7 @@ body {
     height: 600px;
     padding: 100px;
     background-image: url("dice/geralt.png");
-    background-position: bottom -100px right 0;
+    background-position: bottom -100px right -100px;
     background-repeat: no-repeat;
 }
 
@@ -146,17 +146,29 @@ background-repeat: no-repeat;
 *** PLAYERS
 **********************************************/
 
-.player-name {
+.player1-name {
     font-size: 40px;
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 2px;
+    left: 60px;
     font-weight: 100;
     margin-top: 40px;
     margin-bottom: 10px;
     position: relative;
 }
 
+.player2-name {
+    font-size: 40px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 100;
+    right: 60px;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    position: relative;
+}
 .player-score {
     text-align: center;
     font-size: 80px;
@@ -169,13 +181,22 @@ background-repeat: no-repeat;
   rgba(129, 105, 82, 0.4); }
 .active .player-name { font-weight: 300; }
 
-.active .player-name::after {
+.active .player1-name::after {
     content: "\2022";
     font-size: 47px;
     position: absolute;
     color: #EB4D4D;
-    top: -10px;
-    right: 50px;
+    top: 100px;
+    right: 40px;
+
+}
+.active .player2-name::after {
+    content: "\2022";
+    font-size: 47px;
+    position: absolute;
+    color: #EB4D4D;
+    top: 100px;
+    right: 230px;
 
 }
 
@@ -281,6 +302,8 @@ i {
     height: 200px;
     box-shadow: 0px 10px 60px rgba(0, 0, 0, 0.10);
 }
+
+
 .dice-DOm {
     position: absolute;
     left: 50%;
@@ -292,48 +315,3 @@ i {
 
 .winner { background-color: #f7f7f7; }
 .winner .player-name { font-weight: 300; color: #EB4D4D; }
-
-
-.flip-card {
-  position: absolute;
-  left: 50%;
-  top: 178px;
-  background-color: transparent;
-  width: 136px;
-  height: 179px;
-  perspective: 1000px;
-  transform: translateX(-50%);
-}
-
-.flip-card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  transition: transform 0.8s;
-  transform-style: preserve-3d;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-}
-
-.flip-card:hover .flip-card-inner {
-  transform: rotateY(180deg);
-}
-
-.flip-card-front, .flip-card-back {
-  position: relative;
-  width:100%;
-  height: 10%;
-  /* backface-visibility: hidden; */
-}
-
-.flip-card-front {
-  /* background-color: #bbb; */
-  top: -200px;
-  color: black;
-}
-
-.flip-card-back {
-  /* background-color: #2980b9; */
-  /* color: white; */
-  transform: rotateY(180deg);
-}
