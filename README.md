@@ -28,9 +28,9 @@ And then execute:
 
   navigate to
   http://localhost:3000/api/v1/players/ to see the player JSON
-  ![](IMAGES/JSONPLAYERS.PNG)
+  ![](./IMAGES/JSONPLAYERS.PNG)
   http://localhost:3000/api/v1/games to see the GAME json which also contains the player data
-  ![](IMAGES/JSONGAME.PNG)
+  ![](./IMAGES/JSONGAME.PNG)
 To play the game copy the full index.html path which may look something like this if cloned to the desktop -
 file:///Users/User/Desktop/railsJsAPI/JS-FRONTEND/frontEnd/index.html
 
