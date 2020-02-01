@@ -255,15 +255,32 @@ class Game {
     document.querySelector('.player-1-panel').classList.toggle('active')
     this.diceDOm.style.display = 'none'
   }
-
+  //change fetch call to adapter calss instance method of this
   getPlayerData() {
     fetch('http://localhost:3000/api/v1/players/')
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok){
+          throw res
+        }
+        return res.json()
+        console.log("request ok")
+      })
       .then(playerData => {
         this.playerData = playerData
+        ;
 
       })
+      .catch((error)=>{
+
+      const h1= document.createElement("h1")
+            h1.innerText = "Failure Occurred"
+            document.body.appendChild(h1)
+            setTimeout(()=>{
+            h1.remove()
+            },5000)
+      } )
   }
+
 
 
 
@@ -487,8 +504,5 @@ this.stats = [this.winner,this.loser,this.cardDraws,this.one, this.highestPointS
     this.highestPointStreak = 0
     this.initBindingsAndEventListeners()
   }
-
-
-
 
 }

@@ -33,7 +33,7 @@ And then execute:
 To play the game copy the full index.html path which may look something like this if cloned to the desktop -
 file:///Users/User/Desktop/railsJsAPI/JS-FRONTEND/frontEnd/index.html
 
-In the terminal navigate to /Users/user/Desktop/TossACoinAPI_Rails/railsJsAPI/jsApiProgram and start the Rails server using the rails s command.
+In the terminal navigate to file:////Users/user/Desktop/TossACoinAPI_Rails/railsJsAPI/jsApiProgram and start the Rails server using the rails s command.
 
 Enter a name for player one and player 2 this will create the player profile.
 Set the score limit if no score limit is set default value is 100 to win.

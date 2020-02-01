@@ -10,15 +10,3 @@ class Player {
 }
 
 const game = new Game()
-
-// class Stats {
-//   constuctor(winner){
-//
-//     this.winner = winner;
-//     this.loser;
-//     this.roundDrawsAverage;
-//     this.holdsAverageTurns;
-//     this.gameHighestPointStreak;
-//     this.averageRollsPerTurn;
-//   }
-// }
