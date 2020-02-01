@@ -28,7 +28,7 @@ And then execute:
 
   navigate to
   http://localhost:3000/api/v1/players/ to see the player JSON
-  ![](IMAGES/JASONPLAYERS.png)
+  ![](IMAGES/JASONPLAYERS.PNG)
   http://localhost:3000/api/v1/games to see the GAME json which also contains the player data
   ![](IMAGES/JSONGAME.PNG)
 To play the game copy the full index.html path which may look something like this if cloned to the desktop -
