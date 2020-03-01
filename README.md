@@ -29,6 +29,7 @@ And then execute:
   navigate to
   http://localhost:3000/api/v1/players/ to see the player JSON
   ![Imgur](https://i.imgur.com/nn9atxr.png)
+  ![Imgur](https://i.imgur.com/UFvh1k7.png)
   ![](IMAGES/JSONPLAYERS.png)
   http://localhost:3000/api/v1/games to see the GAME json which also contains the player data
   ![](IMAGES/JSONGAME.png)
