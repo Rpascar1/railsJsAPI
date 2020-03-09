@@ -22,7 +22,7 @@ And then execute:
     navigate to the railsJsApiProgram folder with the terminal
     and run rails db:create
     run rails db:migrate
-    run rails s to start a rails server
+    run rails s to start a rails server - the only api server for this app
 
 ## Usage
 
