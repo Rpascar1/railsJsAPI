@@ -19,7 +19,7 @@ And then execute:
     $ bundle install
 
     start your Postgres server
-    nvaigate to the railsJsApiProgram folder with the terminal
+    navigate to the railsJsApiProgram folder with the terminal
     and run rails db:create
     run rails db:migrate
     run rails s to start a rails server
@@ -30,9 +30,10 @@ And then execute:
   http://localhost:3000/api/v1/players/ to see the player JSON
   ![Imgur](https://i.imgur.com/nn9atxr.pngs=200)
   ![Imgur](https://i.imgur.com/UFvh1k7.pngs=200)
-  ![](IMAGES/JSONPLAYERS.png)
+  ![Imgur](IMAGES/JSONPLAYERS.png)
   http://localhost:3000/api/v1/games to see the GAME json which also contains the player data
-  ![](IMAGES/JSONGAME.png)
+  ![Imgur](IMAGES/JSONGAME.png)
+
 To play the game copy the full index.html path which may look something like this if cloned to the desktop -
 file:///Users/User/Desktop/railsJsAPI/JS-FRONTEND/frontEnd/index.html
 
